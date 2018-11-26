@@ -6,15 +6,15 @@ function compose(...func) {
 }
 
 function hello() {
-  console.log("Hello ");
+  console.log("Hello");
 }
 
-function hi() {
-  console.log("Hi ");
+function hi(ar) {
+  console.log("Hi " + ar);
 }
 
 const test = compose(
   hello,
   hi
 );
-test();
+test(5);
