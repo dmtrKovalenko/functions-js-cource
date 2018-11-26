@@ -26,7 +26,6 @@ const calculator = {
 // Реализовать другой калькулятор который не запрашивает данные, а работает с цепочкой вызовов
 
 const chainCalculator = {
-
   input(value) {
     this.result = value;
     return this;

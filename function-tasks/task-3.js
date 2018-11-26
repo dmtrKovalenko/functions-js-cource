@@ -9,18 +9,17 @@
 */
 
 function sequence(start, step = 0) {
-    let number = start - step;
-    return function() {
-      return  number += step;
-    }
+  let number = start - step;
+  return function() {
+    return (number += step);
+  };
+}
 
-  }
-  
-  const generator = sequence(10, 3);
-  const generator2 = sequence(7, 1);
-  
-  console.log(generator()); // 10
-  console.log(generator()); // 13
-  console.log(generator2()); // 7
-  console.log(generator()); // 16
-  console.log(generator2()); // 8
+const generator = sequence(10, 3);
+const generator2 = sequence(7, 1);
+
+console.log(generator()); // 10
+console.log(generator()); // 13
+console.log(generator2()); // 7
+console.log(generator()); // 16
+console.log(generator2()); // 8

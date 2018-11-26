@@ -1,9 +1,23 @@
 //Написать свою систему модулей которая позволит инкапсулировать локальное состояние.
 
-const modules = new Map();
+const modulesLibrary = new Map();
 
+function createModule(name, callback) {
+  const result = callback();
+  modulesLibrary.set(name, result);
+  return result;
+}
 
-const module = createModule("module", () => {
+function require(name) {
+  if (modulesLibrary.has(name)) {
+    return modulesLibrary.get(name);
+  }
+
+  return `Module ${name} not found`;
+}
+
+// Вызов
+const newModule = createModule("module", () => {
   return {
     sayHi: () => alert("HI")
   };
@@ -11,18 +25,8 @@ const module = createModule("module", () => {
 
 const anotherModule = createModule("newModule", () => {
   const myFirstModule = require("module");
+  return myFirstModule; // для проверки
 });
 
-function createModule(name, callback) {
-  let result = callback();
-  module.set(name, result);
-  return result;
-}
-
-function require(name) {
-  if (module.has(name)) {
-    return module.get(name)
-  }
-
-  return `Module ${name} not found`
-}
+console.log(newModule);
+console.log(anotherModule);

@@ -3,22 +3,20 @@
 // НО внутренняя функция не должна быть вызвана чаще чем раз в переданное кол-во миллисекунд.
 
 function wrapper(func, timer) {
-	let self = this;
+  let self = this;
   let timerId;
 
   return (...args) => {
     if (timerId) {
       return;
-		}
-		func.apply(self, ...args);
-    timerId = setTimeout(() => timerId = 0, timer);
+    }
+    func.apply(self, ...args);
+    timerId = setTimeout(() => (timerId = 0), timer);
   };
 }
 
-let test = wrapper(() => console.log("a"), 1000);
-test();
-test();
-test();
-setTimeout(test, 1000);
-
-
+let test = wrapper(() => console.log("Hi"), 1000);
+test(); // Hi
+test(); // -
+test(); // -
+setTimeout(test, 1000); // Hi

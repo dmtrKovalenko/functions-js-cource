@@ -20,4 +20,5 @@ function wrapper(func, delay) {
 let test = wrapper(() => console.log("a"), 1000);
 setTimeout(test, 400);
 setTimeout(test, 600);
+// 1650, т.к. все Таймеры станут в очередь практически одновременно
 setTimeout(test, 1650);
