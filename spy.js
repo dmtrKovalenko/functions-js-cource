@@ -3,7 +3,7 @@ function makeSpyOn(func) {
 
   function count() {
     ++count.calls;
-    // return func();
+    return func();
   }
 
   return count;
