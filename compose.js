@@ -1,26 +1,20 @@
-
 function compose(...funcs) {
-    return  args => {
-        funcs.reverse().forEach(func => 
-            func(args))
-    }
+  return (args) => {
+    funcs.reverse().forEach(func => func(args));
+  };
 }
-const first = function(arg) {
-    console.log(arg + 1);
-}
-
-const second = function(arg) {
-    console.log(arg + 2);
-}
-
-const third = function(arg) {
-    console.log(arg + 3);
-}
-
-let c = compose(
-    first,
-    second,
-    third
-)
-
-c("25");
+const first = (arg) => {
+  console.log(arg + 1);
+};
+const second = (arg) => {
+  console.log(arg + 2);
+};
+const third = (arg) => {
+  console.log(arg + 3);
+};
+const c = compose(
+  first,
+  second,
+  third,
+);
+c('25');
