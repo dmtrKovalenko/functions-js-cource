@@ -1,12 +1,11 @@
 function applier(fn, interval) {
-  let lastTime = null;
-  function timeControll() {
-    if ((lastTime === null) | (Date.now() - interval <= lastTime)) {
-      fn();
-      lastTime = Date.now();
-    } else {
-      clearInterval(this);
+  let id = null;
+  function timeControll(args) {
+    if (id) {
+      id = setTimeout(() => (id = null), interval);
+      return;
     }
+    fn.call(this, args);
   }
   return timeControll;
 }

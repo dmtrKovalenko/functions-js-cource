@@ -1,20 +1,19 @@
 function applier(fn, interval) {
-  let lastTime = null;
-  function timeControll() {
-    if ((lastTime === null) | (Date.now() - interval >= lastTime)) {
-      fn();
-      lastTime = Date.now();
-    } else {
-      clearInterval(this);
+  let id = null;
+  function timeControll(args) {
+    if (id) {
+      return;
     }
+    fn.call(this, args);
+    id = setTimeout(() => (id = null), interval);
   }
   return timeControll;
 }
 
-function sayHello() {
-  console.log("Say hello to my little friend!!!!!!!!!!!!!!!!");
+function sayHello(name) {
+  console.log("Hello,", name);
 }
 
-let test = applier(sayHello, 1000);
+let test = applier(sayHello, 999);
 
-setInterval(test, 500);
+setInterval(test, 500, "John");
