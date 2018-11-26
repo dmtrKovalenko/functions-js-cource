@@ -1,12 +1,12 @@
 function makeSpyOn(func) {
-    function spy() {
-        func();
-        return spy.calls++;
-    }
+  function spy() {
+    func();
+    return spy.calls++;
+  }
 
-    spy.calls = 0;
+  spy.calls = 0;
 
-    return spy;
+  return spy;
 }
 
 yourFunc = () => 5;
