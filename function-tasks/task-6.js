@@ -1,11 +1,24 @@
-// Написать свою систему модулей которая позволит инкапсулировать локальное состояние.
+// Написать функцию которая принимает функцию и количество миллисекунд и возвращает функцию обертку.
+// Каждый раз когда обертка будет вызвана, должна вызываться внутренняя функция,
+// НО внутренняя функция не должна быть вызвана чаще чем раз в переданное кол-во миллисекунд.
 
-const module = createModule("module", () => {
-  return {
-    sayHi: () => alert("HI")
+function wrapper(func, timer) {
+	let self = this;
+  let timerId;
+
+  return (...args) => {
+    if (timerId) {
+      return;
+		}
+		func.apply(self, ...args);
+    timerId = setTimeout(() => timerId = 0, timer);
   };
-});
+}
 
-const anotherModule = createModule("newModule", () => {
-  const myFirstModule = require("module");
-});
+let test = wrapper(() => console.log("a"), 1000);
+test();
+test();
+test();
+setTimeout(test, 1000);
+
+

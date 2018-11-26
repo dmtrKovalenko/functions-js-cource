@@ -9,12 +9,11 @@
 */
 
 function sequence(start, step = 0) {
-    function generator() {
-      return (generator.calls += step);
+    let number = start - step;
+    return function() {
+      return  number += step;
     }
-  
-    generator.calls = start - step;
-    return generator;
+
   }
   
   const generator = sequence(10, 3);
