@@ -29,23 +29,6 @@ user2.timeoutSayHi("Hello!");
 //   Написать функцию которая принимает функцию и количество миллисекунд и возвращает функцию обертку. Каждый раз когда обертка будет вызвана, 
 //   должна вызываться внутренняя функция, НО внутренняя функция не должна быть вызвана чаще чем раз в переданное кол-во миллисекунд.
 function myTimeoutWrapper(f, delay) {
-    let timerId;
-    return function () {
-        clearTimeout(timerId);
-        timerId = setTimeout(f, delay);
-    }
-}
-function c(msg = new Date().toLocaleString()) {
-    console.log(msg);
-}
-let timer1 = myTimeoutWrapper(c, 500);
-timer1();
-timer1();
-timer1();
-
-//   Написать функцию которая принимает функцию и количество миллисекунд и возвращает функцию обертку. Каждый раз когда обертка будет вызвана, 
-//   должна вызываться внутренняя функция, НО внутренняя функция не должна быть вызвана если с момента предыдущего вызова не прошло заданное кол-во миллисекунд.
-function myTimeoutWrapper2(f, delay) {
     let timerId = null;
     return function () {
         if (timerId === null) {
@@ -53,8 +36,18 @@ function myTimeoutWrapper2(f, delay) {
         }
     }
 }
-let timer2 = myTimeoutWrapper2(c, 500);
-timer2();
-timer2();
-timer2();
 
+//   Написать функцию которая принимает функцию и количество миллисекунд и возвращает функцию обертку. Каждый раз когда обертка будет вызвана, 
+//   должна вызываться внутренняя функция, НО внутренняя функция не должна быть вызвана если с момента предыдущего вызова не прошло заданное кол-во миллисекунд.
+
+function myTimeoutWrapper2(f, delay) {
+    let timersSet = new Set();
+    return function () {
+        let timerId = setTimeout(() => { f(); timerId = null; }, delay);
+        if  timersSet.has(timerId) {
+
+        } else {
+            timerId = setTimeout(() => { timerId = null; }, delay);
+        }
+    }
+}

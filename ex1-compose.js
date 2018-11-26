@@ -6,18 +6,7 @@ function compose(...functionsArray) {
 //   const isValid = validate(“someemail@emal.com”)
 
 
-function c( msg = new Date().toLocaleString() ){
-    console.log(msg);
-  }
-
-let foo = compose(c,c,c);
-foo('Same argument everywhere');
-
-
 // Переписать функцию из первого задания чтобы она вызывала каждую функцию с аргументом того что вернула предыдущая функция
 function compose2(...functionsArray) {
     return (argStart) => functionsArray.reduceRight( (argNext,f) => { return f(argNext) }, argStart);
 }
-
-let foo2 = compose2(c,c,c);
-foo2('First argument');
