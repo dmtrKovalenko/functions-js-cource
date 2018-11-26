@@ -20,8 +20,8 @@ function compose(...funcs) {
   };
 }
 
-// const v = compose(a, b, c);
-// v('Eugene');
+const v = compose(a, b, c);
+v('Eugene');
 
 // task 2 spy function
 function makeSpyOn(myFunc) {
@@ -138,9 +138,30 @@ const user = {
 // user.timeoutSayHi();
 
 // task6
+function wrapper(func, ms) {
+  let timer = null;
+
+  return (...args) => {
+    const comleteFunc = () => {
+      func.apply(this, args);
+      timer = null;
+    };
+
+    if (timer) {
+      clearTimeout(timer);
+    }
+
+    timer = setTimeout(comleteFunc, ms);
+  };
+}
+
+// const wrapp = wrapper(b, 2000);
+// wrapp('Eugene');
+// setTimeout(() => wrapp('Vlad'), 1000);
+// wrapp('Vika');
 
 // task7
-function container(func, ms) {
+function wrapperSecond(func, ms) {
   let lastCall = 0;
   let nowCall = 0;
 
@@ -154,6 +175,26 @@ function container(func, ms) {
   };
 }
 
-const cnt = container(a, 3000);
-cnt();
-setTimeout(cnt, 4000);
+// const wrp = wrapperSecond(a, 1000);
+// wrp();
+// setTimeout(wrp, 500);
+
+// task8
+const modules = new Map();
+
+function createModule(moduleName, func) {
+  modules.set(moduleName, func());
+}
+
+function myRequire(moduleName) {
+  return modules.get(moduleName);
+}
+
+const myModule = createModule('module', () => ({
+  sayHi: () => console.log('HI'),
+}));
+
+const anotherModule = createModule('newModule', () => {
+  const myFirstModule = myRequire('module');
+  myFirstModule.sayHi();
+});
