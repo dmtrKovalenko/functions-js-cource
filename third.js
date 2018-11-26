@@ -1,26 +1,17 @@
-const sequence = (start, seq) => {
-  const createGenerator = (start, seq) => {
-    function* generateSequence(sum) {
-      yield sum + seq;
-      yield sum + seq;
+const sequence = (start, step) => {
+  function* generate(start = 0, step = 1) {
+    while (true) {
+      yield start;
+      start += step;
     }
-    const generator = generateSequence(sum).next().value;
-    console.log(generator);
-  };
-  const sum = (start, seq) => {
-    const interval = start + seq;
-    sum.calls = interval;
-    return interval;
-  };
-  sum.calls = 0;
+  }
+  const generator = generate(start, step);
+  return () => generator.next().value;
 };
 
-const test = sequence(() => {});
-test(10, 8);
-console.log(test);
+const test = sequence(10, 8);
+test();
+test();
+console.log(test());
 
-// вернуть функцию (сумму)
-//сделать что бы вернуло первое
-//записать это вне замыкания есть
-// инкрементировать и отдавать новое
 // 5 контекст в примере не передается но его надо передавать
