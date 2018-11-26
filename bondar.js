@@ -66,7 +66,6 @@ function sequence(start = 0, step = 1) {
 // console.log(generator());
 // console.log(generator2());
 
-
 // task4.1 calculator
 class Calculator {
   input() {
@@ -139,11 +138,22 @@ const user = {
 // user.timeoutSayHi();
 
 // task6
+
+// task7
 function container(func, ms) {
-  return function wrapFunc() {
-    setTimeout(func, ms);
+  let lastCall = 0;
+  let nowCall = 0;
+
+  return () => {
+    nowCall = Date.now();
+
+    if (nowCall > lastCall + ms) {
+      lastCall = nowCall;
+      func.apply(this);
+    }
   };
 }
 
-const cnt = container(a, 1000);
+const cnt = container(a, 3000);
 cnt();
+setTimeout(cnt, 4000);
