@@ -32,22 +32,21 @@ function myTimeoutWrapper(f, delay) {
     let timerId = null;
     return function () {
         if (timerId === null) {
-            timerId = setTimeout(() => { f(); timerId = null; }, delay);
+            f();            
+        } else {
+            timerId = setTimeout(() => { timerId = null; }, delay);
         }
     }
 }
 
 //   Написать функцию которая принимает функцию и количество миллисекунд и возвращает функцию обертку. Каждый раз когда обертка будет вызвана, 
 //   должна вызываться внутренняя функция, НО внутренняя функция не должна быть вызвана если с момента предыдущего вызова не прошло заданное кол-во миллисекунд.
-
 function myTimeoutWrapper2(f, delay) {
-    let timersSet = new Set();
+    let timerId = null;
     return function () {
-        let timerId = setTimeout(() => { f(); timerId = null; }, delay);
-        if  timersSet.has(timerId) {
-
-        } else {
-            timerId = setTimeout(() => { timerId = null; }, delay);
+        if (timerId === null) {
+            f();  
         }
+        timerId = setTimeout(() => { timerId = null; }, delay);
     }
 }
