@@ -7,7 +7,7 @@ function sequence(val1 = 0, val2 = 1) {
     return takeValue;
   };
 }
- const generator = sequence(2, 4);
+const generator = sequence(2, 4);
 console.log(generator());
 console.log(generator());
 console.log(generator());

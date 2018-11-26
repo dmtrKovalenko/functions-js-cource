@@ -6,10 +6,10 @@ function makeSpyOn(myFunc1) {
   spy.calls = 0;
   return spy;
 }
- function myFunc2() {
-		console.log("tet text");
+function myFunc2() {
+  console.log("tet text");
 }
- const spy = makeSpyOn(myFunc2);
+const spy = makeSpyOn(myFunc2);
 spy();
 spy();
 spy();
