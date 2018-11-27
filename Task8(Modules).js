@@ -1,18 +1,19 @@
-/// Task 8 (Unfinished)
+/// Task 8
 
 modulesLibrary = new Map();
 function createModule(name, body) {
-  modulesLibrary.set("name", body());
+  modulesLibrary.set(`${name}`, body());
 }
 function require(moduleName) {
   return modulesLibrary.get(moduleName);
 }
-const module = createModule("module", () => {
+const moduleInstance = createModule("module", () => {
   return {
-    sayHi: () => alert("HI"),
+    sayHi: () => console.log("hi"),
   };
 });
 
 const anotherModule = createModule("newModule", () => {
   const myFirstModule = require("module");
+  myFirstModule.sayHi();
 });
