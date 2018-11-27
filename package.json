@@ -1,0 +1,19 @@
+{
+  "name": "functions-js-cource",
+  "version": "1.0.0",
+  "description": "Student : Bilyuk Vadim",
+  "main": "task1.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hadouken137/functions-js-cource.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/hadouken137/functions-js-cource/issues"
+  },
+  "homepage": "https://github.com/hadouken137/functions-js-cource#readme"
+}
