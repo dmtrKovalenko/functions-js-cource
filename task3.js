@@ -1,5 +1,4 @@
 // Task 3
-
 function sequence(start = 0, step = 1) {
   // start - start value for function count
   // step - step for function count
@@ -10,9 +9,8 @@ function sequence(start = 0, step = 1) {
     if (isFirstLoad) {
       isFirstLoad = false;
       return localValue;
-    } else {
-      return (localValue += step);
     }
+    return (localValue += step);
   };
 }
 

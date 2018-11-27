@@ -11,15 +11,15 @@ function maxLength(someValue) {
 // Answer for task 1
 function compose(...functions) {
   return () => {
-    functions.reverse().forEach(funcElement => {
+    functions.reverse().forEach((funcElement) => {
       call(funcElement);
     });
   };
 }
 
-let composeSetUp = compose(
-  isEmail("test1"),
+const composeSetUp = compose(
+  isEmail('test1'),
   maxLength(5),
   maxLength(4),
-  maxLength(3)
+  maxLength(3),
 );

@@ -15,5 +15,10 @@
   "bugs": {
     "url": "https://github.com/hadouken137/functions-js-cource/issues"
   },
-  "homepage": "https://github.com/hadouken137/functions-js-cource#readme"
+  "homepage": "https://github.com/hadouken137/functions-js-cource#readme",
+  "devDependencies": {
+    "eslint": "^5.9.0",
+    "eslint-config-airbnb-base": "^13.1.0",
+    "eslint-plugin-import": "^2.14.0"
+  }
 }

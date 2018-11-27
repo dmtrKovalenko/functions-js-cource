@@ -9,7 +9,7 @@ function makeSpyOn(tempFunction) {
 }
 
 function myFunc() {
-  console.log("Hello world");
+  console.log('Hello world');
 }
 
 const spy = makeSpyOn(myFunc);
